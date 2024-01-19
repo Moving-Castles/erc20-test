@@ -8,7 +8,8 @@ export default mudConfig({
         GameConfig: {
             keySchema: {},
             valueSchema: {
-                increment: "uint32"
+                increment: "uint32",
+                tokenAddress: "address"
             },
             dataStruct: true,
         },

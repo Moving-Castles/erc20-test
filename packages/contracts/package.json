@@ -14,16 +14,17 @@
     "lint": "pnpm run prettier && pnpm run solhint",
     "prettier": "prettier --write 'src/**/*.sol'",
     "solhint": "solhint --config ./.solhint.json 'src/**/*.sol' --fix",
-    "test": "mud test"
+    "test": "mud test",
+    "test-rewards": "mud test --forgeOptions='--match-contract RewardSystemTest -vvvv'"
   },
   "devDependencies": {
-    "@latticexyz/cli": "2.0.0-main-8f41f81f",
-    "@latticexyz/config": "2.0.0-main-8f41f81f",
-    "@latticexyz/faucet": "2.0.0-main-8f41f81f",
-    "@latticexyz/schema-type": "2.0.0-main-8f41f81f",
-    "@latticexyz/store": "2.0.0-main-8f41f81f",
-    "@latticexyz/world": "2.0.0-main-8f41f81f",
-    "@latticexyz/world-modules": "2.0.0-main-8f41f81f",
+    "@latticexyz/cli": "2.0.0-main-08b42217",
+    "@latticexyz/config": "2.0.0-main-08b42217",
+    "@latticexyz/faucet": "2.0.0-main-08b42217",
+    "@latticexyz/schema-type": "2.0.0-main-08b42217",
+    "@latticexyz/store": "2.0.0-main-08b42217",
+    "@latticexyz/world": "2.0.0-main-08b42217",
+    "@latticexyz/world-modules": "2.0.0-main-08b42217",
     "@solidstate/contracts": "^0.0.52",
     "@types/node": "^20.4.4",
     "ds-test": "https://github.com/dapphub/ds-test.git#e282159d5170298eb2455a6c05280ab5a73a4ef0",
@@ -31,9 +32,12 @@
     "prettier": "^3.0.0",
     "prettier-plugin-solidity": "^1.1.3",
     "solhint": "^3.4.1",
+    "solhint-config-mud": "2.0.0-main-08b42217",
+    "solhint-plugin-mud": "2.0.0-main-08b42217",
     "ts-node": "^10.9.1",
-    "typescript": "5.3.2",
-    "solhint-config-mud": "2.0.0-main-8f41f81f",
-    "solhint-plugin-mud": "2.0.0-main-8f41f81f"
+    "typescript": "5.3.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1"
   }
 }

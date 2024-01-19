@@ -1,6 +1,6 @@
 <script lang="ts">
   import { toastMessage } from "../modules/ui/toast"
-  import { increment } from "../modules/action"
+  import { increment, reward } from "../modules/action"
   import { playSound } from "../modules/sound"
   import { localPlayer, leaderBoard } from "../modules/state"
   import {
@@ -34,16 +34,45 @@
       transactionState = TransactionState.READY
     }
   }
+
+  const sendReward = async () => {
+    try {
+      playSound("snd", "click")
+      transactionState = TransactionState.SENDING
+      const action = reward()
+      await waitForCompletion(action, loadingSpinner)
+      playSound("snd", "success")
+      transactionState = TransactionState.READY
+    } catch (error) {
+      playSound("snd", "failure")
+      toastMessage(String(error), {
+        type: "error",
+        disappear: false,
+      })
+      transactionState = TransactionState.READY
+    }
+  }
 </script>
 
 <div class="game">
   <div class="split left">
     <button
+      class="increment"
       on:click={sendIncrement}
       class:disabled={transactionState !== TransactionState.READY}
     >
       {#if transactionState === TransactionState.READY}
         {$localPlayer.counter}
+      {:else if transactionState === TransactionState.SENDING}
+        {@html spinner}
+      {/if}
+    </button>
+    <button
+      on:click={sendReward}
+      class:disabled={transactionState !== TransactionState.READY}
+    >
+      {#if transactionState === TransactionState.READY}
+        Reward
       {:else if transactionState === TransactionState.SENDING}
         {@html spinner}
       {/if}
@@ -83,6 +112,10 @@
     height: 6ch;
     user-select: none;
     border-style: double;
+
+    &.increment {
+      margin-right: 20px;
+    }
   }
 
   button.disabled {

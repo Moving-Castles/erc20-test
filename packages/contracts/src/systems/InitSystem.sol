@@ -4,7 +4,7 @@ import { System } from "@latticexyz/world/src/System.sol";
 import { GameConfig, GameConfigData } from "../codegen/index.sol";
 
 contract InitSystem is System {
-  function init() public {
-    GameConfig.set(GameConfigData({ increment: 1 }));
+  function init(address _tokenAddress) public {
+    GameConfig.set(GameConfigData({ increment: 1, tokenAddress: _tokenAddress }));
   }
 }
