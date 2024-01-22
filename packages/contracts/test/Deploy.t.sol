@@ -2,7 +2,9 @@
 pragma solidity >=0.8.21;
 import "forge-std/console.sol";
 import { IWorld } from "../src/codegen/world/IWorld.sol";
-import { MudTest } from "@latticexyz/world/test/MudTest.t.sol";
+
+import { BaseTest } from "./BaseTest.sol";
+
 import "../src/codegen/index.sol";
 import "../src/libraries/Libraries.sol";
 
@@ -14,17 +16,8 @@ import { Balances } from "@latticexyz/world-modules/src/modules/tokens/tables/Ba
 import { Puppet } from "@latticexyz/world-modules/src/modules/puppet/Puppet.sol";
 import { IERC20Mintable } from "@latticexyz/world-modules/src/modules/erc20-puppet/IERC20Mintable.sol";
 
-contract DeployTest is MudTest {
+contract DeployTest is BaseTest {
   using WorldResourceIdInstance for ResourceId;
-
-  IWorld world;
-  GameConfigData gameConfig;
-
-  function setUp() public override {
-    super.setUp();
-    world = IWorld(worldAddress);
-    gameConfig = GameConfig.get();
-  }
 
   function testWorldExists() public {
     setUp();
